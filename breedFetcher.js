@@ -8,17 +8,16 @@ if (!breed) {
   return;
 }
 
-const url = `https://api.thecatapi.com/v1/breeds/search?q=${breed}`; 
+const url = `https://api.thecattapi.com/v1/breeds/search?q=${breed}`; 
 
 request(url, (error, response, body) => {
 
   // print any errors
   if (error) {
-    console.log('error', error);
+    console.log(`A ${error.code} error occurred while trying to connect to the following api (${error.hostname}):\n`);
+    console.log(`The details are as follows:\n`, error);
+    return;
   }
-
-  // print the response status code if a response was received
-  // console.log('statusCode:', response && response.statusCode);
 
   // body is a string, we can deserialize it into an object using JSON.parse()
   const data = JSON.parse(body);
